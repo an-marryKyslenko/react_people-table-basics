@@ -10,35 +10,37 @@ const PeoplePage = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    getPeople()
-      .then(result => {
-        const personWithParents = result.map(person => {
-          const modifiedPerson = {...person};
-          const mam = result.find(p => p.name === person.motherName);
-          const dad = result.find(p => p.name === person.fatherName);
+    if (!isError) {
+      setIsLoading(true);
+      getPeople()
+        .then(result => {
+          const personWithParents = result.map(person => {
+            const modifiedPerson = { ...person };
+            const mam = result.find(p => p.name === person.motherName);
+            const dad = result.find(p => p.name === person.fatherName);
 
-          if (mam) {
-            modifiedPerson.mother = mam;
-          }
+            if (mam) {
+              modifiedPerson.mother = mam;
+            }
 
-          if (dad) {
-            modifiedPerson.father = dad;
-          }
+            if (dad) {
+              modifiedPerson.father = dad;
+            }
 
-          return modifiedPerson;
-        });
+            return modifiedPerson;
+          });
 
-        setPeople(personWithParents);
-      })
-      .catch(() => {
-        setIsError(true);
-        setTimeout(() => {
-          setIsError(false);
-        }, 3000);
-      })
-      .finally(() => setIsLoading(false));
-  }, []);
+          setPeople(personWithParents);
+        })
+        .catch(() => {
+          setIsError(true);
+          setTimeout(() => {
+            setIsError(false);
+          }, 3000);
+        })
+        .finally(() => setIsLoading(false));
+    }
+  }, [isError]);
 
   return (
     <main className="section">
