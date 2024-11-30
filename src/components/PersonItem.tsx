@@ -26,22 +26,20 @@ const PersonItem: React.FC<Props> = ({ person }) => {
       <td>{person.born}</td>
       <td>{person.died}</td>
       <td>
-        {person.mother
-          ? (
-            <Link to={person.mother.slug} className="has-text-danger">
-              {person.motherName}
-            </Link>
-          ) : (
-            person.motherName || '-'
-          )}
+        {person.mother ? (
+          <Link to={person.mother.slug} className="has-text-danger">
+            {person.motherName}
+          </Link>
+        ) : (
+          person.motherName || '-'
+        )}
       </td>
       <td>
-        {person.father
-          ? (
-            <Link to={person.father.slug}>{person.father.name}</Link>
-          ) : (
-            person.fatherName || '-'
-          )}
+        {person.father ? (
+          <Link to={person.father.slug}>{person.father.name}</Link>
+        ) : (
+          person.fatherName || '-'
+        )}
       </td>
     </tr>
   );
