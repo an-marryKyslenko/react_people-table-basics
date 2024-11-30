@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { NavLink, Outlet } from 'react-router-dom';
 
-const Laout = () => {
+const Layout = () => {
   const getLinkActive = ({ isActive }: { isActive: boolean }) =>
     classNames('navbar-item', {
       'has-background-grey-lighter': isActive,
@@ -33,4 +33,4 @@ const Laout = () => {
   );
 };
 
-export default Laout;
+export default Layout;
